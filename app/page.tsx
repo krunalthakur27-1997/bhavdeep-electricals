@@ -259,63 +259,103 @@ export default function Home() {
             </div>
           </div>
         </section>
-        {/* PROJECTS */}
-        <section id="projects" className="bg-black text-white py-28 px-6">
-          <h2 className="text-5xl font-bold text-center mb-20">Our Projects</h2>
+        {/* PRODUCTS SECTION */}
+        <section id="products" className="bg-[#0b1120] py-28 px-6">
+          <div className="max-w-7xl mx-auto">
+            {/* TITLE */}
+            <div className="text-center mb-20">
+              <h2 className="text-5xl font-bold text-yellow-400 mb-6">
+                Our Product Range
+              </h2>
 
-          <div className="grid md:grid-cols-3 gap-10 max-w-7xl mx-auto">
-            <div className="project-card bg-[#111827] rounded-3xl overflow-hidden shadow-xl">
-              <img
-                src="/projects/factory_wiring.png"
-                alt="Factory Wiring"
-                className="w-full h-72 object-cover"
-              />
-
-              <div className="p-8">
-                <h3 className="text-3xl font-bold text-yellow-400 mb-4">
-                  Factory Wiring
-                </h3>
-
-                <p className="text-gray-300 text-lg">
-                  Complete electrical setup for manufacturing units.
-                </p>
-              </div>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                We manufacture and supply high-quality industrial electrical
+                panels, automation systems, power distribution solutions, and
+                engineering products.
+              </p>
             </div>
 
-            <div className="project-card bg-[#111827] rounded-3xl overflow-hidden shadow-xl">
-              <img
-                src="/projects/control_panel.png"
-                alt="Control Panel"
-                className="w-full h-72 object-cover"
-              />
+            {/* PRODUCT GRID */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+              {/* PRODUCT CARD */}
+              {[
+                {
+                  title: "PCC Panel",
+                  image: "/products/pcc-panel.jpg",
+                  desc: "Power Control Center panels for industrial power distribution.",
+                },
 
-              <div className="p-8">
-                <h3 className="text-3xl font-bold text-yellow-400 mb-4">
-                  Control Panel Installation
-                </h3>
+                {
+                  title: "MCC Panel",
+                  image: "/products/mcc-panel.jpg",
+                  desc: "Motor Control Center panels for industrial motor operations.",
+                },
 
-                <p className="text-gray-300 text-lg">
-                  Advanced industrial control panel systems.
-                </p>
-              </div>
-            </div>
+                {
+                  title: "APFC Panel",
+                  image: "/products/apfc-panel.jpg",
+                  desc: "Automatic Power Factor Correction panels for energy efficiency.",
+                },
 
-            <div className="project-card bg-[#111827] rounded-3xl overflow-hidden shadow-xl">
-              <img
-                src="/projects/plant_maintenance.png"
-                alt="Plant Maintenance"
-                className="w-full h-72 object-cover"
-              />
+                {
+                  title: "Automation Panel",
+                  image: "/products/automation-panel.jpg",
+                  desc: "PLC, VFD and SCADA automation control systems.",
+                },
 
-              <div className="p-8">
-                <h3 className="text-3xl font-bold text-yellow-400 mb-4">
-                  Plant Maintenance
-                </h3>
+                {
+                  title: "ATS / AMF Panel",
+                  image: "/products/amf-panel.jpg",
+                  desc: "Automatic transfer switching and DG synchronization systems.",
+                },
 
-                <p className="text-gray-300 text-lg">
-                  Preventive and emergency maintenance support.
-                </p>
-              </div>
+                {
+                  title: "Distribution Panel",
+                  image: "/products/distribution-panel.jpg",
+                  desc: "Reliable industrial electrical distribution systems.",
+                },
+
+                {
+                  title: "Fire Panel",
+                  image: "/products/fire-panel.jpg",
+                  desc: "Industrial fire alarm and protection control systems.",
+                },
+
+                {
+                  title: "Solar Panel System",
+                  image: "/products/solar-panel.jpg",
+                  desc: "Industrial and commercial solar power solutions.",
+                },
+
+                {
+                  title: "Bus Bar Duct",
+                  image: "/products/busbar-duct.jpg",
+                  desc: "Efficient electrical bus duct systems for power transmission.",
+                },
+              ].map((product, index) => (
+                <div
+                  key={index}
+                  className="bg-[#111827] rounded-3xl overflow-hidden shadow-2xl hover:-translate-y-3 transition duration-500"
+                >
+                  <div className="overflow-hidden">
+                    <img
+                      src={product.image}
+                      alt={product.title}
+                      className="w-full h-72 object-cover hover:scale-110 transition duration-500"
+                    />
+                  </div>
+
+                  <div className="p-8">
+                    <h3 className="text-3xl font-bold text-yellow-400 mb-4">
+                      {product.title}
+                    </h3>
+
+                    <p className="text-gray-300 text-lg leading-relaxed">
+                      {product.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
