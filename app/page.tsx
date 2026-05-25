@@ -302,34 +302,9 @@ export default function Home() {
           </div>
         </section>
 
-        {/* MAP SECTION */}
-        <section className="py-28 bg-[#050816] px-6">
+        {/* CONTACT + LOCATION SECTION */}
+        <section id="contact" className="bg-[#081224] py-24 px-6">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-5xl font-bold text-yellow-400 mb-6">
-                Our Location
-              </h2>
-
-              <p className="text-xl text-gray-300">
-                Visit Bhavdeep Electricals & Engineering
-              </p>
-            </div>
-
-            <div className="rounded-3xl overflow-hidden shadow-2xl border border-gray-700">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.1221125607467!2d72.77494917500671!3d20.15724998128285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be72b9c14b8e2f9%3A0x1005ee1349d1a84b!2sBhavdeep%20Electricals%20%26%20Engineering!5e1!3m2!1sen!2sin!4v1779454423220!5m2!1sen!2sin"
-                width="100%"
-                height="500"
-                style={{ border: 0 }}
-                loading="lazy"
-              ></iframe>
-            </div>
-          </div>
-        </section>
-
-        {/* CONTACT SECTION */}
-        <section id="contact" className="bg-[#081224] py-28 px-6">
-          <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-5xl font-bold text-yellow-400 mb-6">
                 Contact Us
@@ -340,57 +315,73 @@ export default function Home() {
               </p>
             </div>
 
-            <form
-              action="https://formsubmit.co/bhavdeepelectricals.engg@gmail.com"
-              method="POST"
-              className="bg-[#111827] p-10 rounded-3xl shadow-2xl border border-gray-700"
-            >
-              <div className="grid md:grid-cols-2 gap-8 mb-8">
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  placeholder="Your Name"
-                  className="w-full p-5 rounded-xl bg-[#1f2937] border border-gray-600 text-white"
-                />
+            <div className="grid lg:grid-cols-2 gap-12 items-start">
+              {/* CONTACT FORM */}
+              <div className="bg-[#111827] p-10 rounded-3xl shadow-2xl border border-gray-700">
+                <form
+                  action="https://formsubmit.co/bhavdeepelectricals.engg@gmail.com"
+                  method="POST"
+                >
+                  <div className="grid md:grid-cols-2 gap-6 mb-6">
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      placeholder="Your Name"
+                      className="w-full p-4 rounded-xl bg-[#1f2937] border border-gray-600 text-white"
+                    />
 
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  placeholder="Your Email"
-                  className="w-full p-5 rounded-xl bg-[#1f2937] border border-gray-600 text-white"
-                />
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      placeholder="Your Email"
+                      className="w-full p-4 rounded-xl bg-[#1f2937] border border-gray-600 text-white"
+                    />
+                  </div>
+
+                  <input
+                    type="text"
+                    name="subject"
+                    required
+                    placeholder="Subject"
+                    className="w-full p-4 rounded-xl bg-[#1f2937] border border-gray-600 text-white mb-6"
+                  />
+
+                  <textarea
+                    rows={6}
+                    name="message"
+                    required
+                    placeholder="Your Message"
+                    className="w-full p-4 rounded-xl bg-[#1f2937] border border-gray-600 text-white mb-6"
+                  ></textarea>
+
+                  <button
+                    type="submit"
+                    className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-4 rounded-2xl text-lg transition"
+                  >
+                    Submit Inquiry
+                  </button>
+                </form>
               </div>
 
-              <input
-                type="text"
-                name="subject"
-                required
-                placeholder="Subject"
-                className="w-full p-5 rounded-xl bg-[#1f2937] border border-gray-600 text-white mb-8"
-              />
-
-              <textarea
-                rows={6}
-                name="message"
-                required
-                placeholder="Your Message"
-                className="w-full p-5 rounded-xl bg-[#1f2937] border border-gray-600 text-white mb-8"
-              ></textarea>
-
-              <button
-                type="submit"
-                className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-5 rounded-2xl text-lg transition"
-              >
-                Submit Inquiry
-              </button>
-            </form>
+              {/* GOOGLE MAP */}
+              <div className="rounded-3xl overflow-hidden shadow-2xl border border-gray-700 h-full min-h-[520px]">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.1221125607467!2d72.77494917500671!3d20.15724998128285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be72b9c14b8e2f9%3A0x1005ee1349d1a84b!2sBhavdeep%20Electricals%20%26%20Engineering!5e1!3m2!1sen!2sin!4v1779454423220!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  className="min-h-[520px]"
+                ></iframe>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* FOOTER */}
-        <footer className="bg-black py-10 text-center border-t border-gray-800">
+        <footer className="bg-black py-6 text-center border-t border-gray-800">
           <div className="flex justify-center mb-6">
             <Image src="/logo.png" alt="Logo" width={80} height={80} />
           </div>
