@@ -290,126 +290,32 @@ export default function Home() {
               </h2>
 
               <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-                A glimpse of our industrial electrical projects, control panel
-                installations, maintenance work and engineering services.
+                Industrial electrical projects, control panels, maintenance work
+                and engineering services.
               </p>
             </div>
 
             {/* GALLERY GRID */}
             <div className="grid md:grid-cols-3 gap-8">
-              {/* IMAGE 1 */}
-              <div className="gallery-card overflow-hidden rounded-3xl shadow-2xl bg-white">
-                <img
-                  src="/projects/factory_wiring.png"
-                  alt="Factory Wiring"
-                  className="w-full h-80 object-cover hover:scale-110 transition duration-500"
-                />
-
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-blue-900 mb-2">
-                    Factory Wiring
-                  </h3>
-
-                  <p className="text-gray-600">
-                    Industrial electrical wiring installation project.
-                  </p>
+              {[
+                "/gallery/gallery1.jpg",
+                "/gallery/gallery2.jpg",
+                "/gallery/gallery3.jpg",
+                "/gallery/gallery4.jpg",
+                "/gallery/gallery5.jpg",
+                "/gallery/gallery6.jpg",
+              ].map((image, index) => (
+                <div
+                  key={index}
+                  className="overflow-hidden rounded-3xl shadow-2xl bg-white group"
+                >
+                  <img
+                    src={image}
+                    alt="Gallery"
+                    className="w-full h-80 object-cover group-hover:scale-110 transition duration-500"
+                  />
                 </div>
-              </div>
-
-              {/* IMAGE 2 */}
-              <div className="gallery-card overflow-hidden rounded-3xl shadow-2xl bg-white">
-                <img
-                  src="/projects/control_panel.png"
-                  alt="Control Panel"
-                  className="w-full h-80 object-cover hover:scale-110 transition duration-500"
-                />
-
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-blue-900 mb-2">
-                    Control Panel
-                  </h3>
-
-                  <p className="text-gray-600">
-                    Electrical control panel installation work.
-                  </p>
-                </div>
-              </div>
-
-              {/* IMAGE 3 */}
-              <div className="gallery-card overflow-hidden rounded-3xl shadow-2xl bg-white">
-                <img
-                  src="/projects/plant_maintenance.png"
-                  alt="Plant Maintenance"
-                  className="w-full h-80 object-cover hover:scale-110 transition duration-500"
-                />
-
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-blue-900 mb-2">
-                    Plant Maintenance
-                  </h3>
-
-                  <p className="text-gray-600">
-                    Preventive and emergency maintenance services.
-                  </p>
-                </div>
-              </div>
-
-              {/* IMAGE 4 */}
-              <div className="gallery-card overflow-hidden rounded-3xl shadow-2xl bg-white">
-                <img
-                  src="/projects/factory_wiring.png"
-                  alt="Industrial Setup"
-                  className="w-full h-80 object-cover hover:scale-110 transition duration-500"
-                />
-
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-blue-900 mb-2">
-                    Industrial Setup
-                  </h3>
-
-                  <p className="text-gray-600">
-                    Complete industrial electrical infrastructure setup.
-                  </p>
-                </div>
-              </div>
-
-              {/* IMAGE 5 */}
-              <div className="gallery-card overflow-hidden rounded-3xl shadow-2xl bg-white">
-                <img
-                  src="/projects/control_panel.png"
-                  alt="Electrical Panel"
-                  className="w-full h-80 object-cover hover:scale-110 transition duration-500"
-                />
-
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-blue-900 mb-2">
-                    Electrical Panels
-                  </h3>
-
-                  <p className="text-gray-600">
-                    Advanced industrial electrical panel solutions.
-                  </p>
-                </div>
-              </div>
-
-              {/* IMAGE 6 */}
-              <div className="gallery-card overflow-hidden rounded-3xl shadow-2xl bg-white">
-                <img
-                  src="/projects/plant_maintenance.png"
-                  alt="Maintenance Service"
-                  className="w-full h-80 object-cover hover:scale-110 transition duration-500"
-                />
-
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-blue-900 mb-2">
-                    Maintenance Service
-                  </h3>
-
-                  <p className="text-gray-600">
-                    Reliable electrical maintenance and troubleshooting.
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
