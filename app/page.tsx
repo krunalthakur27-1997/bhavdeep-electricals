@@ -62,8 +62,8 @@ export default function Home() {
 
             <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
               Delivering reliable industrial electrical solutions, control
-              panels, maintenance services, and engineering support for
-              factories and industrial plants.
+              panels, maintenance services and engineering support for factories
+              and industrial plants.
             </p>
 
             <div className="mt-10 flex flex-col md:flex-row gap-5 justify-center">
@@ -123,36 +123,99 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ABOUT */}
+        {/* LEADERSHIP SECTION */}
         <section id="about" className="bg-gray-200 py-28 px-6">
-          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-5xl font-bold text-blue-900 mb-10">
-                About Us
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-20">
+              <h2 className="text-5xl font-bold text-blue-900 mb-6">
+                Leadership & Expertise
               </h2>
 
-              <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                Bhavdeep Electricals & Engineering has been delivering trusted
-                industrial electrical solutions since 1988.
-              </p>
-
-              <p className="text-gray-700 text-lg leading-relaxed">
-                We specialize in industrial wiring, maintenance, control panels
-                and complete engineering support for factories and industrial
-                plants.
+              <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+                Driven by decades of industrial electrical experience, our
+                leadership team is committed to delivering reliable, safe and
+                high-quality engineering solutions.
               </p>
             </div>
 
-            <div className="bg-blue-900 text-white rounded-3xl p-12 shadow-2xl">
-              <h3 className="text-4xl font-bold mb-10">Why Choose Us</h3>
+            <div className="grid md:grid-cols-2 gap-12">
+              {/* OWNER 1 */}
+              <div className="contact-card bg-white rounded-3xl shadow-2xl overflow-hidden">
+                <div className="h-[420px] bg-gray-300 flex items-center justify-center">
+                  <p className="text-gray-600 text-xl font-semibold">
+                    Owner Photo Here
+                  </p>
+                </div>
 
-              <ul className="space-y-5 text-lg">
-                <li>✓ 36+ Years Experience</li>
-                <li>✓ Trusted By Industries</li>
-                <li>✓ Industrial Specialists</li>
-                <li>✓ Reliable Service</li>
-                <li>✓ Professional Team</li>
-              </ul>
+                <div className="p-10">
+                  <h3 className="text-4xl font-bold text-blue-900 mb-3">
+                    Bhavdeep C. Bhandari
+                  </h3>
+
+                  <p className="text-yellow-500 font-bold text-xl mb-6">
+                    Founder & Industrial Electrical Contractor
+                  </p>
+
+                  <p className="text-gray-700 text-lg leading-relaxed mb-8">
+                    Experienced in industrial electrical systems, factory
+                    maintenance, control panel installation and engineering
+                    project execution across various industrial sectors.
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-5">
+                    <div className="bg-blue-50 rounded-2xl p-5 text-center">
+                      <h4 className="text-3xl font-bold text-blue-900">36+</h4>
+
+                      <p className="text-gray-600">Years Experience</p>
+                    </div>
+
+                    <div className="bg-blue-50 rounded-2xl p-5 text-center">
+                      <h4 className="text-3xl font-bold text-blue-900">500+</h4>
+
+                      <p className="text-gray-600">Projects</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* OWNER 2 */}
+              <div className="contact-card bg-white rounded-3xl shadow-2xl overflow-hidden">
+                <div className="h-[420px] bg-gray-300 flex items-center justify-center">
+                  <p className="text-gray-600 text-xl font-semibold">
+                    Owner Photo Here
+                  </p>
+                </div>
+
+                <div className="p-10">
+                  <h3 className="text-4xl font-bold text-blue-900 mb-3">
+                    C.K. Bhandari
+                  </h3>
+
+                  <p className="text-yellow-500 font-bold text-xl mb-6">
+                    Technical Head & Engineering Support
+                  </p>
+
+                  <p className="text-gray-700 text-lg leading-relaxed mb-8">
+                    Specializing in industrial troubleshooting, electrical
+                    maintenance, project supervision and technical engineering
+                    support for factories and industrial plants.
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-5">
+                    <div className="bg-blue-50 rounded-2xl p-5 text-center">
+                      <h4 className="text-3xl font-bold text-blue-900">30+</h4>
+
+                      <p className="text-gray-600">Industrial Clients</p>
+                    </div>
+
+                    <div className="bg-blue-50 rounded-2xl p-5 text-center">
+                      <h4 className="text-3xl font-bold text-blue-900">24/7</h4>
+
+                      <p className="text-gray-600">Support</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -225,7 +288,6 @@ export default function Home() {
           </h2>
 
           <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            {/* MAP */}
             <div className="rounded-3xl overflow-hidden shadow-2xl h-[500px]">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.1221125607467!2d72.77494917500671!3d20.15724998128285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be72b9c14b8e2f9%3A0x1005ee1349d1a84b!2sBhavdeep%20Electricals%20%26%20Engineering!5e1!3m2!1sen!2sin!4v1779454423220!5m2!1sen!2sin"
@@ -238,7 +300,6 @@ export default function Home() {
               ></iframe>
             </div>
 
-            {/* LOCATION INFO */}
             <div className="bg-white rounded-3xl p-12 shadow-2xl">
               <h3 className="text-4xl font-bold text-blue-900 mb-10">
                 Visit Our Office
@@ -272,27 +333,7 @@ export default function Home() {
                     9:00 AM - 7:00 PM
                   </p>
                 </div>
-
-                <div>
-                  <p className="font-bold text-blue-900 mb-2">Contact Number</p>
-
-                  <p>+91 97261 97976</p>
-                </div>
-
-                <div>
-                  <p className="font-bold text-blue-900 mb-2">Email</p>
-
-                  <p>bhavdeepelectricals.engg@gmail.com</p>
-                </div>
               </div>
-
-              <a
-                href="https://www.google.com/maps/place/Bhavdeep+Electricals+%26+Engineering/@20.1572499,72.7749492,17z"
-                target="_blank"
-                className="inline-block mt-10 bg-blue-900 hover:bg-blue-800 text-white font-bold px-8 py-4 rounded-xl transition"
-              >
-                Open in Google Maps
-              </a>
             </div>
           </div>
         </section>
@@ -302,7 +343,6 @@ export default function Home() {
           <h2 className="text-5xl font-bold text-center mb-20">Contact Us</h2>
 
           <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
-            {/* CONTACT INFO */}
             <div className="contact-card bg-white text-black rounded-3xl p-12 shadow-2xl">
               <h3 className="text-4xl font-bold text-blue-900 mb-10">
                 Contact Information
@@ -325,7 +365,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* INQUIRY FORM */}
             <div className="contact-card bg-blue-900 rounded-3xl p-12 shadow-2xl">
               <h3 className="text-4xl font-bold mb-10">Send Inquiry</h3>
 
@@ -379,36 +418,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        {/* FOOTER */}
-        <footer className="bg-[#111827] text-white py-10 px-6">
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-            <div>
-              <h3 className="text-2xl font-bold text-yellow-400">
-                Bhavdeep Electricals & Engineering
-              </h3>
-
-              <p className="text-gray-400 mt-2">
-                Industrial Electrical Experts Since 1988
-              </p>
-            </div>
-
-            <div className="text-gray-400 text-center md:text-right mt-6 md:mt-0">
-              <p>© 2026 Bhavdeep Electricals & Engineering</p>
-
-              <p className="mt-2">All Rights Reserved</p>
-            </div>
-          </div>
-        </footer>
-
-        {/* WHATSAPP BUTTON */}
-        <a
-          href="https://wa.me/919726197976"
-          target="_blank"
-          className="fixed bottom-5 right-5 bg-green-500 hover:bg-green-600 text-white px-5 py-4 rounded-full shadow-2xl font-bold z-50"
-        >
-          WhatsApp
-        </a>
       </main>
     </>
   );
