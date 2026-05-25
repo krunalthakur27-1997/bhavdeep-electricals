@@ -219,7 +219,46 @@ export default function Home() {
             </div>
           </div>
         </section>
+        {/* CLIENT SECTION */}
+        <section id="clients" className="bg-white py-24 px-6">
+          <div className="max-w-7xl mx-auto">
+            {/* TITLE */}
+            <div className="text-center mb-20">
+              <h2 className="text-5xl font-bold text-blue-900 mb-6">
+                Trusted By Industries
+              </h2>
 
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                We proudly provide industrial electrical solutions and
+                engineering services to trusted businesses and manufacturing
+                industries.
+              </p>
+            </div>
+
+            {/* CLIENT GRID */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+              {[
+                "/clients/client1.png",
+                "/clients/client2.png",
+                "/clients/client3.png",
+                "/clients/client4.png",
+                "/clients/client5.png",
+                "/clients/client6.png",
+              ].map((logo, index) => (
+                <div
+                  key={index}
+                  className="bg-gray-100 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition duration-300 flex items-center justify-center group"
+                >
+                  <img
+                    src={logo}
+                    alt="Client Logo"
+                    className="h-16 object-contain grayscale group-hover:grayscale-0 transition duration-500"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
         {/* PROJECTS */}
         <section id="projects" className="bg-black text-white py-28 px-6">
           <h2 className="text-5xl font-bold text-center mb-20">Our Projects</h2>
