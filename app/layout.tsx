@@ -10,27 +10,33 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: {
     default:
-      "Bhavdeep Electricals & Engineering | Industrial Electrical Experts",
+      "Bhavdeep Electricals & Engineering | HT & LT Power Infrastructure Experts",
     template: "%s | Bhavdeep Electricals",
   },
+
   description:
-    "Bhavdeep Electricals & Engineering — Industrial electrical panels, automation, motor rewinding, maintenance and engineering solutions since 1988. Based in Vapi, Gujarat, India.",
+    "Bhavdeep Electricals & Engineering provides HT & LT electrical installation, transformer installation, VCB panels, electrical panels, industrial maintenance, motor rewinding, automation, solar solutions and engineering services since 1988. Based in Umbergaon, Gujarat.",
+
   keywords: [
-    "MCC panel Gujarat",
-    "PCC panel manufacturer",
-    "industrial automation",
-    "motor rewinding Vapi",
-    "electrical panel manufacturer Gujarat",
+    "HT installation Gujarat",
+    "LT installation Gujarat",
+    "Transformer installation",
+    "VCB panel installation",
+    "Electrical panel manufacturer Gujarat",
+    "Industrial electrical contractor",
+    "Solar installation Gujarat",
     "Bhavdeep Electricals",
-    "APFC panel",
-    "VFD repair",
-    "electrical maintenance",
+    "Umbergaon electrical contractor",
   ],
+
   authors: [{ name: "Bhavdeep Electricals & Engineering" }],
+
   robots: "index, follow",
+
   openGraph: {
     title: "Bhavdeep Electricals & Engineering",
-    description: "Industrial Electrical Experts Since 1988 — Vapi, Gujarat",
+    description:
+      "HT & LT Electrical Infrastructure Experts Since 1988 - Umbergaon, Gujarat",
     type: "website",
     locale: "en_IN",
   },

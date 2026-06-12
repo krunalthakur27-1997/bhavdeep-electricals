@@ -78,58 +78,6 @@ const products = [
   },
 ];
 
-const services = [
-  {
-    title: "Motor Rewinding",
-    description:
-      "AC/DC motor rewinding, slip ring motor repair and welding machine servicing.",
-    bg: "from-blue-900/40 to-blue-800/20",
-    border: "border-blue-700/40 hover:border-blue-400",
-  },
-  {
-    title: "Electrical Maintenance",
-    description:
-      "Preventive and breakdown electrical maintenance for industrial plants.",
-    bg: "from-red-900/40 to-red-800/20",
-    border: "border-red-700/40 hover:border-red-400",
-  },
-  {
-    title: "VCB / ACB / LT / APFC Panel Servicing",
-    description:
-      "Testing, repair and maintenance of VCB, ACB, LT and APFC panels.",
-    bg: "from-blue-900/40 to-blue-800/20",
-    border: "border-blue-700/40 hover:border-blue-400",
-  },
-  {
-    title: "11 KV DO DP Structure Servicing",
-    description:
-      "Servicing and maintenance of 11 KV DO DP electrical distribution structures.",
-    bg: "from-red-900/40 to-red-800/20",
-    border: "border-red-700/40 hover:border-red-400",
-  },
-  {
-    title: "VFD / Drive / Electronic Card Repair",
-    description:
-      "VFD, servo drive and electronic card troubleshooting and repair services.",
-    bg: "from-blue-900/40 to-blue-800/20",
-    border: "border-blue-700/40 hover:border-blue-400",
-  },
-  {
-    title: "DG Servicing",
-    description:
-      "Diesel generator maintenance, testing and operational support.",
-    bg: "from-red-900/40 to-red-800/20",
-    border: "border-red-700/40 hover:border-red-400",
-  },
-  {
-    title: "Transformer Oil Filtration",
-    description:
-      "Transformer oil filtration, dehydration and insulation improvement.",
-    bg: "from-blue-900/40 to-blue-800/20",
-    border: "border-blue-700/40 hover:border-blue-400",
-  },
-];
-
 const stats = [
   { value: "35+", label: "Years Experience", color: "text-blue-400" },
   { value: "500+", label: "Projects Completed", color: "text-red-400" },
@@ -186,6 +134,63 @@ const categoryColors: Record<string, string> = {
   Protection: "bg-red-800 text-white",
 };
 
+const projectsData = [
+  {
+    title: "HT Power Installation",
+    accent: "blue",
+    items: [
+      "11KV DO DP Structure Installation",
+      "VCB Panel Supply & Installation",
+      "Transformer Supply & Installation",
+      "HT Cable Laying & Termination",
+      "Earthing System",
+      "Testing & Commissioning",
+      "Preventive Maintenance",
+    ],
+  },
+  {
+    title: "LT Power Installation",
+    accent: "red",
+    items: [
+      "LT Panel Design & Manufacturing",
+      "LT Panel Installation",
+      "Power Distribution Consultation",
+      "Power Cable Laying & Termination",
+      "Lighting Power Installation",
+      "DG Erection & Power Installation",
+      "Earthing System",
+      "Testing & Commissioning",
+    ],
+  },
+  {
+    title: "Maintenance Services",
+    accent: "blue",
+    items: [
+      "11KV DO DP Structure Servicing",
+      "VCB / ACB / LT Panel & APFC Panel Servicing",
+      "Transformer Oil Filtration",
+      "DG Servicing",
+      "VFD / Drive / Electronic Card Servicing",
+      "AC & DC Motor Rewinding",
+    ],
+  },
+  {
+    title: "Solar Solutions",
+    accent: "red",
+    items: [
+      "Solar PV System Design",
+      "Rooftop Solar Installation",
+      "Ground-Mounted Solar Systems",
+      "Solar Panel Mounting Structures",
+      "Solar Inverter Installation",
+      "DC & AC Cable Laying",
+      "Net Metering Assistance",
+      "Testing & Commissioning",
+      "Operation & Maintenance (O&M)",
+    ],
+  },
+];
+
 export default function Home() {
   return (
     <>
@@ -221,7 +226,7 @@ export default function Home() {
               <span className="text-white/40">·</span>
               <span className="text-white">Since 1988</span>
               <span className="text-white/40">·</span>
-              <span className="text-red-400">Vapi, Gujarat</span>
+              <span className="text-red-400">Umbergaon, Gujarat</span>
             </div>
 
             {/* Logo */}
@@ -240,14 +245,15 @@ export default function Home() {
             <div className="tricolor-bar w-48 mx-auto mb-6" />
 
             <h1 className="text-2xl md:text-4xl font-bold text-white mb-4 leading-tight">
-              Industrial Electrical{" "}
+              HT &amp; LT Electrical Infrastructure{" "}
               <span className="text-blue-400">Experts</span>{" "}
               <span className="text-red-400">Since 1988</span>
             </h1>
 
             <p className="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-              Delivering reliable electrical panels, industrial automation,
-              maintenance services, and engineering solutions across Gujarat.
+              Delivering complete HT/LT power solutions, electrical panels,
+              industrial automation, maintenance services and solar energy
+              systems across Gujarat.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
@@ -302,55 +308,6 @@ export default function Home() {
                   ))}
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ═══ SERVICES ═══════════════════════════════════════════ */}
-        <section
-          id="services"
-          className="relative py-28 px-6 overflow-hidden"
-          aria-label="Services"
-        >
-          <div className="absolute inset-0">
-            <Image
-              src="/projects/plant_maintenance.png"
-              alt=""
-              fill
-              className="object-cover object-center"
-              aria-hidden="true"
-            />
-            <div className="absolute inset-0 bg-[#020b18]/90" />
-          </div>
-
-          <div className="relative z-10 max-w-7xl mx-auto">
-            <div className="text-center mb-20">
-              <span className="section-badge">What We Do</span>
-              <h2 className="section-title text-white mt-4">
-                Our <span className="text-blue-400">Services</span>
-              </h2>
-              <div className="tricolor-bar w-32 mx-auto mt-4 mb-6" />
-              <p className="section-subtitle">
-                Complete industrial electrical solutions for factories,
-                commercial projects, and infrastructure development.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {services.map((service) => (
-                <div
-                  key={service.title}
-                  className={`service-card relative bg-gradient-to-br ${service.bg} backdrop-blur-sm rounded-2xl p-7 border ${service.border} transition-all duration-300 cursor-default overflow-hidden group`}
-                >
-                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-600 via-white/20 to-red-600 opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
-                  <h3 className="text-lg font-bold text-white mb-3 leading-snug">
-                    {service.title}
-                  </h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
-              ))}
             </div>
           </div>
         </section>
@@ -477,7 +434,7 @@ export default function Home() {
                         Years of Excellence
                       </p>
                       <p className="text-sm mt-2 text-slate-400">
-                        Serving Gujarat's industries since 1988
+                        Serving Gujarat&apos;s industries since 1988
                       </p>
                     </div>
                   </div>
@@ -533,7 +490,7 @@ export default function Home() {
                   <p className="text-slate-400 leading-relaxed text-sm">
                     With over 35 years of hands-on experience in industrial
                     electrical engineering, he has led Bhavdeep Electricals from
-                    inception to becoming one of Gujarat's most trusted
+                    inception to becoming one of Gujarat&apos;s most trusted
                     electrical panel manufacturers and service providers.
                   </p>
                   <div className="mt-6 pt-6 border-t border-white/10 flex flex-wrap gap-2">
@@ -666,6 +623,140 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ═══ PROJECTS & CAPABILITIES ════════════════════════════ */}
+        <section
+          id="projects"
+          className="relative py-28 px-6 overflow-hidden bg-[#020b18]"
+          aria-label="Projects and Capabilities"
+        >
+          {/* Subtle background image */}
+          <div className="absolute inset-0">
+            <Image
+              src="/projects/plant_maintenance.png"
+              alt=""
+              fill
+              className="object-cover object-center"
+              aria-hidden="true"
+            />
+            <div className="absolute inset-0 bg-[#020b18]/93" />
+          </div>
+
+          <div className="relative z-10 max-w-7xl mx-auto">
+            <div className="text-center mb-20">
+              <span className="section-badge">What We Do</span>
+              <h2 className="section-title text-white mt-4">
+                Projects &amp;{" "}
+                <span className="text-blue-400">Capabilities</span>
+              </h2>
+              <div className="tricolor-bar w-32 mx-auto mt-4 mb-6" />
+              <p className="section-subtitle">
+                Comprehensive HT, LT, Maintenance and Solar Engineering
+                Solutions.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6 items-stretch">
+              {projectsData.map((card) => {
+                const isBlue = card.accent === "blue";
+                return (
+                  <div
+                    key={card.title}
+                    className={`group relative flex flex-col bg-[#04111f] rounded-2xl overflow-hidden border transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${
+                      isBlue
+                        ? "border-blue-800/40 hover:border-blue-500/60 hover:shadow-blue-900/30"
+                        : "border-red-800/40 hover:border-red-500/60 hover:shadow-red-900/20"
+                    }`}
+                  >
+                    {/* Top accent bar */}
+                    <div
+                      className={`h-1 w-full rounded-none ${
+                        isBlue
+                          ? "bg-gradient-to-r from-blue-600 via-blue-400 to-blue-700"
+                          : "bg-gradient-to-r from-red-600 via-red-400 to-red-700"
+                      }`}
+                    />
+
+                    {/* Glow overlay on hover */}
+                    <div
+                      className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl ${
+                        isBlue
+                          ? "bg-gradient-to-br from-blue-600/5 to-transparent"
+                          : "bg-gradient-to-br from-red-600/5 to-transparent"
+                      }`}
+                    />
+
+                    <div className="relative z-10 p-7 flex flex-col flex-1">
+                      {/* Icon badge */}
+                      <div
+                        className={`w-10 h-10 rounded-xl flex items-center justify-center mb-5 shrink-0 ${
+                          isBlue
+                            ? "bg-blue-600/20 border border-blue-500/30"
+                            : "bg-red-600/20 border border-red-500/30"
+                        }`}
+                      >
+                        <span
+                          className={`text-lg font-extrabold ${isBlue ? "text-blue-400" : "text-red-400"}`}
+                          aria-hidden="true"
+                        >
+                          {card.title.charAt(0)}
+                        </span>
+                      </div>
+
+                      {/* Title */}
+                      <h3
+                        className={`text-xl font-bold mb-5 leading-snug transition-colors duration-200 ${
+                          isBlue
+                            ? "text-white group-hover:text-blue-300"
+                            : "text-white group-hover:text-red-300"
+                        }`}
+                      >
+                        {card.title}
+                      </h3>
+
+                      {/* Divider */}
+                      <div
+                        className={`w-12 h-0.5 mb-5 rounded-full ${isBlue ? "bg-blue-600/60" : "bg-red-600/60"}`}
+                      />
+
+                      {/* Items */}
+                      <ul className="space-y-2.5 flex-1">
+                        {card.items.map((item) => (
+                          <li
+                            key={item}
+                            className="flex items-start gap-3 text-slate-400 text-sm leading-relaxed"
+                          >
+                            <span
+                              className={`mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 ${isBlue ? "bg-blue-500" : "bg-red-500"}`}
+                              aria-hidden="true"
+                            />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+
+                      {/* CTA */}
+                      <div
+                        className={`mt-7 pt-5 border-t ${isBlue ? "border-blue-900/40" : "border-red-900/40"}`}
+                      >
+                        <a
+                          href="#contact"
+                          className={`text-sm font-semibold flex items-center gap-1 transition-colors duration-200 ${
+                            isBlue
+                              ? "text-blue-400 hover:text-blue-300"
+                              : "text-red-400 hover:text-red-300"
+                          }`}
+                        >
+                          Get a Quote <span aria-hidden="true">→</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
         {/* ═══ CLIENTS ════════════════════════════════════════════ */}
         <section
           className="relative py-24 px-6 overflow-hidden"
@@ -737,106 +828,6 @@ export default function Home() {
                 <p className="text-red-400 font-bold text-sm">
                   And Many More...
                 </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ═══ GALLERY ════════════════════════════════════════════ */}
-        <section
-          id="gallery"
-          className="py-28 px-6 bg-[#04111f]"
-          aria-label="Gallery"
-        >
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-20">
-              <span className="section-badge">Our Work</span>
-              <h2 className="section-title text-white mt-4">
-                Project <span className="text-blue-400">Gallery</span>
-              </h2>
-              <div className="tricolor-bar w-32 mx-auto mt-4 mb-6" />
-              <p className="section-subtitle">
-                A glimpse of our industrial projects, installations and team
-                events.
-              </p>
-            </div>
-
-            {/* Projects */}
-            <div className="mb-16">
-              <h3 className="text-xl font-bold text-white mb-8 flex items-center gap-3">
-                <span className="w-1 h-6 bg-blue-500 rounded-full inline-block" />
-                Industrial Projects
-              </h3>
-              <div className="grid md:grid-cols-3 gap-6">
-                {[
-                  {
-                    src: "/projects/control_panel.png",
-                    alt: "Control Panel Installation",
-                  },
-                  {
-                    src: "/projects/factory_wiring.png",
-                    alt: "Factory Wiring Project",
-                  },
-                  {
-                    src: "/projects/plant_maintenance.png",
-                    alt: "Plant Maintenance",
-                  },
-                ].map((img, index) => (
-                  <div
-                    key={index}
-                    className="group relative overflow-hidden rounded-2xl border border-blue-900/40 hover:border-blue-500/50 transition-all duration-300 shadow-xl"
-                  >
-                    <div className="h-0.5 bg-gradient-to-r from-blue-600 via-white/10 to-red-600" />
-                    <Image
-                      src={img.src}
-                      alt={img.alt}
-                      width={600}
-                      height={400}
-                      className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-700"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                      <p className="text-white font-bold text-lg">{img.alt}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Events */}
-            <div>
-              <h3 className="text-xl font-bold text-white mb-8 flex items-center gap-3">
-                <span className="w-1 h-6 bg-red-500 rounded-full inline-block" />
-                Events &amp; Celebrations
-              </h3>
-              <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-5">
-                {[
-                  { src: "/gallery/events/event-1.jpg", alt: "Team Event" },
-                  {
-                    src: "/gallery/events/event-2.jpg",
-                    alt: "Annual Celebration",
-                  },
-                  { src: "/gallery/events/event-3.jpg", alt: "Workshop" },
-                  { src: "/gallery/events/event-4.jpg", alt: "Award Ceremony" },
-                ].map((img, index) => (
-                  <div
-                    key={index}
-                    className="group relative overflow-hidden rounded-2xl border border-red-900/40 hover:border-red-500/50 transition-all duration-300 aspect-square"
-                  >
-                    <Image
-                      src={img.src}
-                      alt={img.alt}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-700"
-                      sizes="(max-width: 768px) 50vw, 25vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-red-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                      <p className="text-white font-semibold text-sm">
-                        {img.alt}
-                      </p>
-                    </div>
-                  </div>
-                ))}
               </div>
             </div>
           </div>
@@ -1065,7 +1056,7 @@ export default function Home() {
                   <p className="text-slate-400 leading-relaxed text-sm">
                     Bhavdeep Electricals &amp; Engineering
                     <br />
-                    Vapi, Gujarat — India
+                    Umbergaon, Gujarat — India
                     <br />
                     <span className="text-blue-400 font-semibold">
                       Mon – Sat: 9:00 AM – 7:00 PM
@@ -1106,10 +1097,9 @@ export default function Home() {
                 <ul className="space-y-3">
                   {[
                     { label: "Home", href: "#home" },
-                    { label: "Services", href: "#services" },
                     { label: "About Us", href: "#about" },
                     { label: "Products", href: "#products" },
-                    { label: "Gallery", href: "#gallery" },
+                    { label: "Projects", href: "#projects" },
                     { label: "Contact", href: "#contact" },
                   ].map((link) => (
                     <li key={link.label}>
@@ -1139,7 +1129,7 @@ export default function Home() {
                     <span className="text-blue-400 mt-0.5" aria-hidden="true">
                       📍
                     </span>
-                    Vapi, Gujarat, India
+                    Umbergaon, Gujarat, India
                   </li>
                   <li>
                     <a

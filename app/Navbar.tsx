@@ -5,13 +5,11 @@ import Image from "next/image";
 
 const navLinks = [
   { label: "Home", href: "#home" },
-  { label: "Services", href: "#services" },
   { label: "About", href: "#about" },
   { label: "Products", href: "#products" },
-  { label: "Gallery", href: "#gallery" },
+  { label: "Projects", href: "#projects" },
   { label: "Contact", href: "#contact" },
 ];
-
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);

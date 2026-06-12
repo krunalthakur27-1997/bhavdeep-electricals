@@ -160,7 +160,7 @@ body {
   animation: floating 4s ease-in-out infinite;
 }
 
-/* ── GLOW BUTTON ───────────────────────────────────── */
+/* ── GLOW BUTTONS ──────────────────────────────────── */
 .glow-btn-red {
   box-shadow: 0 0 20px rgba(220, 38, 38, 0.35);
   transition: all 0.3s ease;
@@ -244,9 +244,11 @@ body {
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: #020b18;
 }
+
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom, #1d4ed8, #dc2626);
   border-radius: 20px;
