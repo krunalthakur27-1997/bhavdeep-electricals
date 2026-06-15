@@ -5,8 +5,6 @@ import { useEffect, useRef, useState, useLayoutEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { createPortal } from "react-dom";
 import Navbar from "./Navbar";
-np;
-
 // ─── DATA ────────────────────────────────────────────────────────────────────
 const products = [
   {
