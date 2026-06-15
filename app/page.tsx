@@ -3,9 +3,12 @@
 import Image from "next/image";
 import { useEffect, useRef, useState, useLayoutEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { createPortal } from "react-dom";
 import Navbar from "./Navbar";
+
 // ─── DATA ────────────────────────────────────────────────────────────────────
+
 const products = [
   {
     name: "PCC Panel",
@@ -273,7 +276,14 @@ const trustItems = [
 ];
 
 // ─── ANIMATION VARIANTS ───────────────────────────────────────────────────────
-const fadeUp = {
+
+// Valid Framer Motion cubic-bezier easings (replace invalid string easings).
+const EASE_SMOOTH = [0.25, 0.46, 0.45, 0.94] as const; // smooth ease-out
+const EASE_BACK = [0.34, 1.56, 0.64, 1] as const; // "backOut" overshoot equivalent
+const EASE_INOUT = [0.42, 0, 0.58, 1] as const; // "easeInOut" equivalent
+const EASE_OUT = [0, 0, 0.58, 1] as const; // "easeOut" equivalent
+
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 60 },
   visible: (i = 0) => ({
     opacity: 1,
@@ -281,44 +291,49 @@ const fadeUp = {
     transition: {
       duration: 0.7,
       delay: i * 0.1,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      ease: EASE_SMOOTH,
     },
   }),
 };
 
-const slideLeft = {
+const slideLeft: Variants = {
   hidden: { opacity: 0, x: -80 },
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] },
+    transition: { duration: 0.8, ease: EASE_SMOOTH },
   },
 };
 
-const slideRight = {
+const slideRight: Variants = {
   hidden: { opacity: 0, x: 80 },
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] },
+    transition: { duration: 0.8, ease: EASE_SMOOTH },
   },
 };
 
-const scaleIn = {
+const scaleIn: Variants = {
   hidden: { opacity: 0, scale: 0.85 },
   visible: (i = 0) => ({
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.6, delay: i * 0.08, ease: "backOut" },
+    transition: {
+      duration: 0.6,
+      delay: i * 0.08,
+      ease: EASE_BACK,
+    },
   }),
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.1 } },
 };
 
 // ─── ANIMATED COUNTER ─────────────────────────────────────────────────────────
+
 function AnimatedCounter({
   end,
   suffix,
@@ -354,6 +369,7 @@ function AnimatedCounter({
 }
 
 // ─── SECTION WRAPPER ──────────────────────────────────────────────────────────
+
 function RevealSection({
   children,
   className = "",
@@ -365,6 +381,7 @@ function RevealSection({
 }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+
   return (
     <motion.div
       ref={ref}
@@ -379,6 +396,7 @@ function RevealSection({
 }
 
 // ─── FLOATING PARTICLES (Hydration-safe) ─────────────────────────────────────
+
 const PARTICLES = Array.from({ length: 20 }, (_, i) => {
   const seed = (i * 137.508 + 33.33) % 100;
   const seed2 = (i * 97.3 + 11.11) % 100;
@@ -429,7 +447,7 @@ function FloatingParticles() {
             duration: p.duration,
             repeat: Infinity,
             delay: p.delay,
-            ease: "easeInOut",
+            ease: EASE_INOUT,
           }}
         />
       ))}
@@ -438,10 +456,12 @@ function FloatingParticles() {
 }
 
 // ─── PRODUCT PREVIEW POPUP (desktop) ─────────────────────────────────────────
+
 type Product = (typeof products)[0];
 
 function useIsDesktop() {
   const [isDesktop, setIsDesktop] = useState(false);
+
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 1024px) and (hover: hover)");
     const update = () => setIsDesktop(mq.matches);
@@ -449,6 +469,7 @@ function useIsDesktop() {
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
   }, []);
+
   return isDesktop;
 }
 
@@ -472,6 +493,7 @@ function ProductPreviewPopup({
     const gap = 16;
     const vw = window.innerWidth;
     const vh = window.innerHeight;
+
     let left = anchorRect.right + gap;
     let top = anchorRect.top + anchorRect.height / 2 - H / 2;
     let placement: "right" | "left" | "above" | "below" = "right";
@@ -495,6 +517,7 @@ function ProductPreviewPopup({
         }
       }
     }
+
     // Clamp vertical
     top = Math.max(12, Math.min(top, vh - H - 12));
 
@@ -605,6 +628,7 @@ function ProductPreviewPopup({
 }
 
 // ─── PRODUCT CARD ─────────────────────────────────────────────────────────────
+
 function ProductCard({
   product,
   index,
@@ -694,6 +718,7 @@ function ProductCard({
 }
 
 // ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
+
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const isDesktop = useIsDesktop();
@@ -726,6 +751,7 @@ export default function Home() {
   return (
     <>
       <Navbar scrolled={scrolled} />
+
       <main className="bg-[#020b18] text-white overflow-x-hidden">
         {/* ═══ HERO ═══════════════════════════════════════════════════════════ */}
         <section
@@ -739,7 +765,7 @@ export default function Home() {
               className="absolute inset-0"
               initial={{ scale: 1.08 }}
               animate={{ scale: 1 }}
-              transition={{ duration: 8, ease: "easeOut" }}
+              transition={{ duration: 8, ease: EASE_OUT }}
             >
               <Image
                 src="/projects/factory_wiring.png"
@@ -763,13 +789,13 @@ export default function Home() {
           <motion.div
             className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"
             animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 6, repeat: Infinity, ease: EASE_INOUT }}
             aria-hidden="true"
           />
           <motion.div
             className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-red-600/10 rounded-full blur-3xl pointer-events-none"
             animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.6, 0.3] }}
-            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 7, repeat: Infinity, ease: EASE_INOUT }}
             aria-hidden="true"
           />
 
@@ -792,14 +818,14 @@ export default function Home() {
               className="mb-8"
               initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+              transition={{ duration: 1, delay: 0.4, ease: EASE_OUT }}
             >
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{
                   duration: 4,
                   repeat: Infinity,
-                  ease: "easeInOut",
+                  ease: EASE_INOUT,
                 }}
               >
                 <Image
@@ -930,7 +956,7 @@ export default function Home() {
                   transition={{
                     duration: 2,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    ease: EASE_INOUT,
                   }}
                 />
               </motion.div>
@@ -1197,7 +1223,7 @@ export default function Home() {
                     transition={{
                       duration: 3 + i * 0.3,
                       repeat: Infinity,
-                      ease: "easeInOut",
+                      ease: EASE_INOUT,
                     }}
                     aria-hidden="true"
                   >
@@ -1362,6 +1388,7 @@ export default function Home() {
                           : "bg-gradient-to-br from-red-600/5 to-transparent"
                       }`}
                     />
+
                     <div className="relative z-10 p-7 flex flex-col flex-1">
                       <motion.div
                         className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 shrink-0 text-2xl ${
@@ -1373,12 +1400,13 @@ export default function Home() {
                         transition={{
                           duration: 3 + i * 0.4,
                           repeat: Infinity,
-                          ease: "easeInOut",
+                          ease: EASE_INOUT,
                         }}
                         aria-hidden="true"
                       >
                         {card.icon}
                       </motion.div>
+
                       <h3
                         className={`text-xl font-bold mb-5 leading-snug transition-colors duration-200 ${
                           isBlue
@@ -1388,11 +1416,13 @@ export default function Home() {
                       >
                         {card.title}
                       </h3>
+
                       <div
                         className={`w-12 h-0.5 mb-5 rounded-full ${
                           isBlue ? "bg-blue-600/60" : "bg-red-600/60"
                         }`}
                       />
+
                       <ul className="space-y-2.5 flex-1">
                         {card.items.map((item) => (
                           <li
@@ -1409,6 +1439,7 @@ export default function Home() {
                           </li>
                         ))}
                       </ul>
+
                       <div
                         className={`mt-7 pt-5 border-t ${
                           isBlue ? "border-blue-900/40" : "border-red-900/40"
@@ -1652,7 +1683,7 @@ export default function Home() {
                     transition={{
                       duration: 4 + i * 0.3,
                       repeat: Infinity,
-                      ease: "easeInOut",
+                      ease: EASE_INOUT,
                       delay: i * 0.2,
                     }}
                     aria-hidden="true"
@@ -1752,6 +1783,7 @@ export default function Home() {
                   </p>
                 </motion.div>
               ))}
+
               <motion.div
                 variants={scaleIn}
                 className="flex items-center gap-4 rounded-2xl px-5 py-4 border border-dashed border-red-600/40 bg-red-600/5"
@@ -1955,6 +1987,7 @@ export default function Home() {
                     value="New Inquiry — Bhavdeep Electricals"
                   />
                   <input type="text" name="_honey" className="hidden" />
+
                   <div className="grid md:grid-cols-2 gap-4 mb-4">
                     <div className="form-group">
                       <label className="form-label">Your Name *</label>
@@ -1977,6 +2010,7 @@ export default function Home() {
                       />
                     </div>
                   </div>
+
                   <div className="grid md:grid-cols-2 gap-4 mb-4">
                     <div className="form-group">
                       <label className="form-label">Phone Number</label>
@@ -1998,6 +2032,7 @@ export default function Home() {
                       />
                     </div>
                   </div>
+
                   <div className="form-group mb-6">
                     <label className="form-label">Your Message *</label>
                     <textarea
@@ -2008,6 +2043,7 @@ export default function Home() {
                       className="form-input resize-none"
                     />
                   </div>
+
                   <motion.button
                     type="submit"
                     whileHover={{
@@ -2239,7 +2275,7 @@ export default function Home() {
           aria-label="Chat on WhatsApp"
           initial={{ opacity: 0, scale: 0, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ delay: 2, duration: 0.5, ease: "backOut" }}
+          transition={{ delay: 2, duration: 0.5, ease: EASE_BACK }}
           whileHover={{ scale: 1.1, boxShadow: "0 0 40px rgba(34,197,94,0.5)" }}
           whileTap={{ scale: 0.95 }}
           className="fixed bottom-6 right-6 bg-green-600 hover:bg-green-500 text-white px-5 py-4 rounded-full shadow-[0_0_30px_rgba(34,197,94,0.4)] font-bold z-50 flex items-center gap-2 transition-colors duration-200"
