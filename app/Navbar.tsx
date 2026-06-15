@@ -2,27 +2,28 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Products", href: "#products" },
   { label: "Projects", href: "#projects" },
+  { label: "Leadership", href: "#leadership" },
   { label: "Contact", href: "#contact" },
 ];
-export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+
+export default function Navbar({ scrolled }: { scrolled?: boolean }) {
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
       const sections = navLinks.map((l) => l.href.replace("#", ""));
       for (const id of [...sections].reverse()) {
         const el = document.getElementById(id);
         if (el && window.scrollY >= el.offsetTop - 120) {
-          setActiveSection(id);
+          setActive(id);
           break;
         }
       }
@@ -31,121 +32,224 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const closeMenu = () => setMenuOpen(false);
+  const handleNavClick = (href: string) => {
+    setOpen(false);
+    const id = href.replace("#", "");
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+    <motion.nav
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-[#010810]/98 shadow-[0_4px_30px_rgba(0,0,0,0.6)] backdrop-blur-xl"
-          : "bg-blue-950/60 backdrop-blur-md"
+          ? "bg-[#020b18]/95 backdrop-blur-2xl border-b border-blue-900/50 shadow-[0_4px_40px_rgba(0,0,0,0.5)]"
+          : "bg-gradient-to-b from-[#020b18]/60 to-transparent backdrop-blur-sm"
       }`}
-      aria-label="Main Navigation"
     >
-      {/* Tricolor top line */}
-      <div className="h-[3px] bg-gradient-to-r from-blue-600 via-white/60 to-red-600" />
+      {/* Premium glow line at bottom */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-[1px] pointer-events-none"
+        style={{
+          background: scrolled
+            ? "linear-gradient(to right, rgba(29,78,216,0.8), rgba(255,255,255,0.3), rgba(220,38,38,0.8))"
+            : "linear-gradient(to right, rgba(29,78,216,0.3), rgba(255,255,255,0.1), rgba(220,38,38,0.3))",
+          transition: "all 0.5s ease",
+        }}
+      />
 
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-2">
+      <div className="max-w-7xl mx-auto px-6 py-4 md:py-5 flex items-center justify-between">
         {/* Logo */}
         <a
           href="#home"
-          onClick={closeMenu}
-          className="flex items-center shrink-0 group"
+          onClick={(e) => {
+            e.preventDefault();
+            handleNavClick("#home");
+          }}
+          className="shrink-0"
         >
           <Image
-            src="/logo-icon.png"
-            alt="Bhavdeep Electricals Home"
-            width={160}
-            height={160}
-            className="w-[120px] md:w-[150px] h-auto transition-transform duration-300 group-hover:scale-105"
+            src="/logo-full.png"
+            alt="Bhavdeep Electricals"
+            width={220}
+            height={80}
+            className="w-[160px] md:w-[190px] lg:w-[220px] h-auto"
             priority
           />
         </a>
 
-        {/* Desktop Menu */}
-        <ul
-          className="hidden md:flex items-center gap-1 text-sm font-medium"
-          role="list"
-        >
+        {/* Desktop links */}
+        <div className="hidden md:flex items-center gap-4 lg:gap-6">
           {navLinks.map((link) => {
             const id = link.href.replace("#", "");
-            const isActive = activeSection === id;
+            const isActive = active === id;
             return (
-              <li key={link.label}>
-                <a
-                  href={link.href}
-                  className={`relative px-4 py-2 rounded-xl transition-all duration-200 ${
-                    isActive
-                      ? "text-white bg-blue-700/50 border border-blue-500/40"
-                      : "text-slate-300 hover:text-white hover:bg-white/5"
-                  }`}
-                >
-                  {link.label}
-                  {isActive && (
-                    <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-red-500 rounded-full" />
-                  )}
-                </a>
-              </li>
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(link.href);
+                }}
+                className={`relative px-4 py-2.5 text-base lg:text-lg font-semibold rounded-xl transition-all duration-300 ${
+                  isActive ? "text-white" : "text-slate-400 hover:text-white"
+                }`}
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-pill"
+                    className="absolute inset-0 rounded-xl"
+                    style={{
+                      background: "rgba(59,130,246,0.15)",
+                      border: "1px solid rgba(96,165,250,0.35)",
+                      boxShadow:
+                        "0 0 20px rgba(59,130,246,0.25), inset 0 1px 0 rgba(255,255,255,0.05)",
+                    }}
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+                  />
+                )}
+                <span className="relative z-10">{link.label}</span>
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-underline"
+                    className="absolute bottom-1 left-1/2 -translate-x-1/2 h-0.5 rounded-full"
+                    style={{
+                      width: "60%",
+                      background: "linear-gradient(to right, #3b82f6, #60a5fa)",
+                      boxShadow: "0 0 8px rgba(96,165,250,0.6)",
+                    }}
+                  />
+                )}
+              </a>
             );
           })}
-        </ul>
+        </div>
 
         {/* CTA */}
-        <a
-          href="#contact"
-          className="hidden md:flex items-center gap-2 glow-btn-red bg-red-600 hover:bg-red-500 text-white font-bold px-6 py-2.5 rounded-xl text-sm"
-        >
-          Get Quote →
-        </a>
+        <div className="hidden md:flex items-center gap-4">
+          <motion.a
+            href="tel:+919726197976"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            className="text-sm text-slate-300 hover:text-white font-medium transition-colors"
+          >
+            📞 +91 97261 97976
+          </motion.a>
+          <motion.a
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick("#contact");
+            }}
+            whileHover={{
+              scale: 1.06,
+              boxShadow: "0 0 30px rgba(220,38,38,0.5)",
+            }}
+            whileTap={{ scale: 0.97 }}
+            className="relative bg-red-600 hover:bg-red-500 text-white text-base font-bold px-8 py-4 rounded-xl transition-all duration-300 overflow-hidden group"
+          >
+            {/* Inner glow */}
+            <span className="absolute inset-0 bg-gradient-to-r from-red-500/0 via-white/5 to-red-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <span className="relative z-10">Get Quote</span>
+          </motion.a>
+        </div>
 
-        {/* Mobile hamburger */}
+        {/* Mobile burger */}
         <button
-          className="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition"
-          onClick={() => setMenuOpen((prev) => !prev)}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
+          onClick={() => setOpen((o) => !o)}
+          aria-label="Toggle navigation"
+          className="md:hidden w-11 h-11 flex flex-col items-center justify-center gap-1.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors duration-200"
         >
-          <div className="w-6 flex flex-col gap-1.5">
-            <span
-              className={`block h-0.5 bg-white rounded transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`}
-            />
-            <span
-              className={`block h-0.5 bg-white rounded transition-all duration-300 ${menuOpen ? "opacity-0 scale-x-0" : ""}`}
-            />
-            <span
-              className={`block h-0.5 bg-white rounded transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}
-            />
-          </div>
+          <motion.span
+            animate={open ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+            transition={{ duration: 0.25 }}
+            className="w-5 h-0.5 bg-white rounded-full block"
+          />
+          <motion.span
+            animate={open ? { opacity: 0, x: -8 } : { opacity: 1, x: 0 }}
+            transition={{ duration: 0.25 }}
+            className="w-5 h-0.5 bg-white rounded-full block"
+          />
+          <motion.span
+            animate={open ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+            transition={{ duration: 0.25 }}
+            className="w-5 h-0.5 bg-white rounded-full block"
+          />
         </button>
       </div>
 
       {/* Mobile menu */}
-      {menuOpen && (
-        <div className="md:hidden bg-[#010810]/98 backdrop-blur-xl border-t border-blue-900/40 px-6 py-6 animate-fadeIn">
-          <ul className="flex flex-col gap-2" role="list">
-            {navLinks.map((link) => (
-              <li key={link.label}>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+            className="md:hidden overflow-hidden bg-[#020b18]/98 backdrop-blur-2xl border-t border-blue-900/30"
+          >
+            <div className="px-6 py-6 flex flex-col gap-2">
+              {navLinks.map((link, i) => {
+                const id = link.href.replace("#", "");
+                const isActive = active === id;
+                return (
+                  <motion.a
+                    key={link.label}
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(link.href);
+                    }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.06 }}
+                    className={`px-4 py-3 rounded-xl text-base font-semibold transition-all duration-200 ${
+                      isActive
+                        ? "text-white"
+                        : "text-slate-400 hover:text-white hover:bg-white/5"
+                    }`}
+                    style={
+                      isActive
+                        ? {
+                            background: "rgba(59,130,246,0.15)",
+                            border: "1px solid rgba(96,165,250,0.35)",
+                            boxShadow: "0 0 15px rgba(59,130,246,0.2)",
+                          }
+                        : {}
+                    }
+                  >
+                    {link.label}
+                  </motion.a>
+                );
+              })}
+
+              <div className="pt-4 border-t border-white/10 mt-2 flex flex-col gap-3">
                 <a
-                  href={link.href}
-                  onClick={closeMenu}
-                  className="block text-base font-medium text-slate-300 hover:text-white hover:bg-blue-900/30 px-4 py-3 rounded-xl transition-all duration-200"
+                  href="tel:+919726197976"
+                  className="text-sm text-slate-300 font-medium flex items-center gap-2"
                 >
-                  {link.label}
+                  📞 +91 97261 97976
                 </a>
-              </li>
-            ))}
-            <li className="pt-2">
-              <a
-                href="#contact"
-                onClick={closeMenu}
-                className="glow-btn-red bg-red-600 hover:bg-red-500 text-white font-bold px-4 py-3.5 rounded-xl block text-center transition-all duration-300"
-              >
-                Get Free Quote →
-              </a>
-            </li>
-          </ul>
-        </div>
-      )}
-    </nav>
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick("#contact");
+                  }}
+                  className="bg-red-600 text-white text-sm font-bold px-5 py-3.5 rounded-xl text-center hover:bg-red-500 transition-colors duration-200"
+                >
+                  Get Free Quote →
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 }

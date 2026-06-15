@@ -5,7 +5,6 @@ import Image from "next/image";
 
 const ADMIN_PASSWORD = "bhavdeep2024";
 
-/* ── TYPES ─────────────────────────────────────────────────────── */
 type Tab = "projects" | "products";
 
 interface ProjectCard {
@@ -22,7 +21,6 @@ interface ProductCard {
   description: string;
 }
 
-/* ── DEFAULT DATA (mirrors page.tsx) ───────────────────────────── */
 const defaultProjects: ProjectCard[] = [
   {
     id: "pc1",
@@ -168,33 +166,26 @@ const categoryColors: Record<string, string> = {
   Protection: "bg-red-800/20 text-red-300 border-red-700/30",
 };
 
-/* ════════════════════════════════════════════════════════════════ */
 export default function AdminPage() {
-  /* auth */
   const [authed, setAuthed] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  /* ui */
   const [tab, setTab] = useState<Tab>("projects");
   const [toast, setToast] = useState<string | null>(null);
 
-  /* data */
   const [projects, setProjects] = useState<ProjectCard[]>(defaultProjects);
   const [products, setProducts] = useState<ProductCard[]>(defaultProducts);
 
-  /* project editing */
   const [editingProjectId, setEditingProjectId] = useState<string | null>(null);
   const [editProjectTitle, setEditProjectTitle] = useState("");
   const [editProjectItems, setEditProjectItems] = useState<string[]>([]);
 
-  /* product editing */
   const [editingProductId, setEditingProductId] = useState<string | null>(null);
   const [editProductName, setEditProductName] = useState("");
   const [editProductDesc, setEditProductDesc] = useState("");
   const [editProductCat, setEditProductCat] = useState("");
 
-  /* ── helpers ── */
   const showToast = (msg: string) => {
     setToast(msg);
     setTimeout(() => setToast(null), 3000);
@@ -209,7 +200,6 @@ export default function AdminPage() {
     }
   };
 
-  /* ── project helpers ── */
   const startEditProject = (p: ProjectCard) => {
     setEditingProjectId(p.id);
     setEditProjectTitle(p.title);
@@ -239,11 +229,9 @@ export default function AdminPage() {
   };
 
   const addItem = () => setEditProjectItems((prev) => [...prev, ""]);
-
   const removeItem = (index: number) =>
     setEditProjectItems((prev) => prev.filter((_, i) => i !== index));
 
-  /* ── product helpers ── */
   const startEditProduct = (p: ProductCard) => {
     setEditingProductId(p.id);
     setEditProductName(p.name);
@@ -268,9 +256,6 @@ export default function AdminPage() {
     showToast("Product updated!");
   };
 
-  /* ══════════════════════════════════════════════════════════════ */
-  /* LOGIN SCREEN                                                   */
-  /* ══════════════════════════════════════════════════════════════ */
   if (!authed) {
     return (
       <div className="min-h-screen bg-[#050816] flex items-center justify-center px-6">
@@ -284,7 +269,6 @@ export default function AdminPage() {
               Bhavdeep Electricals &amp; Engineering
             </p>
           </div>
-
           <div className="space-y-4">
             <div>
               <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider block mb-2">
@@ -299,13 +283,11 @@ export default function AdminPage() {
                 className="w-full p-4 rounded-xl bg-white/5 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-400 transition"
               />
             </div>
-
             {error && (
               <p className="text-red-400 text-sm bg-red-400/10 border border-red-400/20 rounded-xl px-4 py-3">
                 {error}
               </p>
             )}
-
             <button
               onClick={handleLogin}
               className="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-4 rounded-xl transition-all duration-300"
@@ -318,19 +300,14 @@ export default function AdminPage() {
     );
   }
 
-  /* ══════════════════════════════════════════════════════════════ */
-  /* ADMIN DASHBOARD                                                */
-  /* ══════════════════════════════════════════════════════════════ */
   return (
     <div className="min-h-screen bg-[#050816] text-white">
-      {/* Toast */}
       {toast && (
         <div className="fixed top-6 right-6 z-50 bg-green-500 text-white px-6 py-3 rounded-2xl shadow-2xl font-semibold">
           ✓ {toast}
         </div>
       )}
 
-      {/* Header */}
       <header className="bg-[#020817] border-b border-gray-800 px-6 py-5">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
           <div>
@@ -359,7 +336,6 @@ export default function AdminPage() {
       </header>
 
       <div className="max-w-6xl mx-auto px-6 py-10">
-        {/* Site overview cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
           {[
             {
@@ -402,7 +378,6 @@ export default function AdminPage() {
           ))}
         </div>
 
-        {/* Tabs */}
         <div className="flex gap-2 mb-8 bg-[#111827] p-2 rounded-2xl w-fit border border-gray-800">
           {(["projects", "products"] as Tab[]).map((t) => (
             <button
@@ -419,7 +394,6 @@ export default function AdminPage() {
           ))}
         </div>
 
-        {/* ── PROJECTS TAB ─────────────────────────────────────── */}
         {tab === "projects" && (
           <div>
             <div className="flex items-center justify-between mb-6">
@@ -436,7 +410,6 @@ export default function AdminPage() {
               {projects.map((card) => {
                 const isEditing = editingProjectId === card.id;
                 const isBlue = card.accent === "blue";
-
                 return (
                   <div
                     key={card.id}
@@ -446,7 +419,6 @@ export default function AdminPage() {
                         : "border-gray-800 hover:border-gray-600"
                     }`}
                   >
-                    {/* Top bar */}
                     <div
                       className={`h-1 w-full ${
                         isBlue
@@ -454,10 +426,8 @@ export default function AdminPage() {
                           : "bg-gradient-to-r from-red-600 via-red-400 to-red-700"
                       }`}
                     />
-
                     <div className="p-6">
                       {isEditing ? (
-                        /* ── Edit mode ── */
                         <div className="space-y-4">
                           <div>
                             <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider block mb-1.5">
@@ -472,7 +442,6 @@ export default function AdminPage() {
                               className="w-full p-3 rounded-xl bg-white/5 border border-yellow-400/40 text-white focus:outline-none text-sm"
                             />
                           </div>
-
                           <div>
                             <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider block mb-1.5">
                               Items
@@ -504,7 +473,6 @@ export default function AdminPage() {
                               + Add Item
                             </button>
                           </div>
-
                           <div className="flex gap-2 pt-2">
                             <button
                               onClick={() => saveProject(card.id)}
@@ -521,7 +489,6 @@ export default function AdminPage() {
                           </div>
                         </div>
                       ) : (
-                        /* ── View mode ── */
                         <div>
                           <div className="flex items-start justify-between mb-4">
                             <div>
@@ -545,7 +512,6 @@ export default function AdminPage() {
                               ✏️ Edit
                             </button>
                           </div>
-
                           <ul className="space-y-1.5">
                             {card.items.map((item, i) => (
                               <li
@@ -561,7 +527,6 @@ export default function AdminPage() {
                               </li>
                             ))}
                           </ul>
-
                           <p className="mt-4 text-gray-600 text-xs">
                             {card.items.length} items
                           </p>
@@ -575,7 +540,6 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* ── PRODUCTS TAB ─────────────────────────────────────── */}
         {tab === "products" && (
           <div>
             <div className="flex items-center justify-between mb-6">
@@ -594,7 +558,6 @@ export default function AdminPage() {
                 const colorClass =
                   categoryColors[product.category] ??
                   "bg-blue-600/20 text-blue-400 border-blue-500/30";
-
                 return (
                   <div
                     key={product.id}
@@ -604,7 +567,6 @@ export default function AdminPage() {
                         : "border-gray-800 hover:border-gray-600"
                     }`}
                   >
-                    {/* Product image preview */}
                     <div className="relative h-36 bg-white overflow-hidden">
                       <Image
                         src={`/product/${product.name
@@ -617,7 +579,6 @@ export default function AdminPage() {
                         className="object-contain p-3"
                       />
                     </div>
-
                     <div className="p-5">
                       {isEditing ? (
                         <div className="space-y-3">
@@ -716,7 +677,6 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* Info box */}
         <div className="mt-10 bg-blue-500/5 border border-blue-500/20 rounded-2xl p-6">
           <h3 className="text-blue-400 font-bold mb-3 flex items-center gap-2">
             <span aria-hidden="true">ℹ️</span> How to permanently save changes
